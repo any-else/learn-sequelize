@@ -8,9 +8,10 @@ const cookieParser = require('cookie-parser');
 const sessionRoute = require('./routes/session.route');
 const session = require('express-session');
 const baitapRoute = require('./routes/baitap.route');
+const userRoute = require('./routes/user.route');
+const productRoute = require('./routes/product.route');
 const path = require('path');
 const app = express();
-
 //middleware
 app.use(express.urlencoded());
 app.use(bodyParser.json());
@@ -35,7 +36,6 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 app.use('/baitap', baitapRoute);
-
 //database
 
 //router
@@ -45,6 +45,8 @@ app.get('/', (req, res) => {
 
 app.use('/demo-cookie', cookieRoute);
 app.use('/demo-session', sessionRoute);
+app.use('/api/v1/users', userRoute);
+app.use('api/v1/products', productRoute);
 //handle errors
 
 module.exports = app;
